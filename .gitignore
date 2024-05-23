@@ -7,13 +7,8 @@ __pycache__/
 dist/
 build/
 *.egg-info/
-
-# IDE specific files
 .idea/
 .vscode/
 
-# Compiled Python files
 *.pyc
-
-# Virtual environment
-venv/
+venv/*
