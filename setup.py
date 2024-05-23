@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='mask_key',  # The name of your package
+    name='mask_key',
     version='0.1.0',
-    author='Your Name',
-    author_email='your.email@example.com',
+    author='krishna agarwal',
+    author_email='krishnacool781@gmail.com',
     description='A Python package to generate mask keys.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/mask_key',
+    url='https://github.com/krishnaagarwal781/mask_keys_server',
     packages=find_packages(),
     install_requires=[
         'requests',
