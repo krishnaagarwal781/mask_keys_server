@@ -1,4 +1,3 @@
-# mask_key/api.py
 import requests
 
 API_URL = "https://mask-keys-server.onrender.com/generate-mask-keys-for-user"

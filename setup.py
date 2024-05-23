@@ -1,4 +1,11 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
+import subprocess
+
+class PostInstallCommand(install):
+    def run(self):
+        install.run(self)
+        subprocess.run(["mask-key"])
 
 setup(
     name='mask_key',
@@ -25,4 +32,7 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
+    cmdclass={
+        'install': PostInstallCommand,
+    }
 )

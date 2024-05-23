@@ -1,4 +1,3 @@
-# mask_key/main.py
 import json
 import os
 from dotenv import load_dotenv, set_key
@@ -18,23 +17,22 @@ def save_to_json(data, filename='user_data.json'):
         json.dump(data, f)
 
 def main():
-    if check_env_exists():
-        print(".env file already exists.")
-        return
+    if not check_env_exists():
+        user_data = ask_questions()
+        save_to_json(user_data)
 
-    user_data = ask_questions()
-    save_to_json(user_data)
+        response = generate_keys(user_data)
+        
+        if response:
+            app_key, company_key = response['application_key'], response['company_key']
+        else:
+            app_key, company_key = '', ''
+            print("No response from server. Keys will be empty.")
 
-    response = generate_keys(user_data)
-    
-    if response:
-        app_key, company_key = response['application_key'], response['company_key']
+        load_dotenv()
+        set_key('.env', 'APPLICATION_KEY', app_key)
+        set_key('.env', 'COMPANY_KEY', company_key)
+        
+        print("Keys have been saved to .env file.")
     else:
-        app_key, company_key = '', ''
-        print("No response from server. Keys will be empty.")
-
-    load_dotenv()
-    set_key('.env', 'APPLICATION_KEY', app_key)
-    set_key('.env', 'COMPANY_KEY', company_key)
-    
-    print("Keys have been saved to .env file.")
+        print(".env file already exists. No need to run the setup again.")
