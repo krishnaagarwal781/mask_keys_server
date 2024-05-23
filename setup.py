@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='mask_key',
-    version='0.1.4',
+    version='0.2.0',
     author='krishna agarwal',
     author_email='krishnacool781@gmail.com',
     description='A Python package to generate mask keys.',
