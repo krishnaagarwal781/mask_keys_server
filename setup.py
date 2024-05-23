@@ -5,11 +5,18 @@ import sys
 
 class PostInstallCommand(install):
     def run(self):
-        install.run(self)
+        install.run(self)  # Ensures that the install proceeds as normal
         try:
-            subprocess.run([sys.executable, '-m', 'mask_key.main'], check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"Error running mask_key.main: {e}")
+            # Calling the main function directly if possible
+            # Make sure 'mask_key.main' has 'main' function accessible
+            from mask_key.main import main
+            main()
+        except ImportError as e:
+            # If the direct call isn't feasible, fall back to subprocess
+            try:
+                subprocess.run([sys.executable, '-m', 'mask_key.main'], check=True)
+            except subprocess.CalledProcessError as e:
+                print(f"Error running mask_key.main: {e}")
 
 setup(
     name='mask_key',
@@ -25,6 +32,11 @@ setup(
         'requests',
         'python-dotenv',
     ],
+    entry_points={
+        'console_scripts': [
+            'mask-key-setup=mask_key.main:main',
+        ],
+    },
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
