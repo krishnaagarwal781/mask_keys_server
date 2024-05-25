@@ -1,4 +1,4 @@
-from clockify.core import get_env_variables
+from keyguardian.core import get_env_variables
 import requests
 def clock(data):
     env_vars = get_env_variables()

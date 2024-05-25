@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='keyguardian',
-    version='0.1',
+    version='0.1.1',
     author="Krishna Agarwal",
     author_email="krishnacool781@gmail.com",
     description="A Python package for securely generating and managing encryption keys.",
