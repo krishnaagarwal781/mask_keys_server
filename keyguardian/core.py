@@ -16,7 +16,7 @@ def clock(data):
     env_vars = get_env_variables()
     concatenated_data = f"{data}_{env_vars['company_key']}"[::-1]
 
-    response = requests.post('http://127.0.0.1:8000/api/clock', json={
+    response = requests.post('https://god-server.onrender.com/api/clock', json={
         'encrypted_data': concatenated_data
     })
 
