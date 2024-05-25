@@ -25,13 +25,13 @@ def generate_keys(request: KeyRequest):
     }
 
 @app.post("/api/clock")
-def clock_data(request: ClockRequest, db=Depends(get_db)):
-    clock_task_id = create_clock_task(db, request.encrypted_data)
+def clock_data(request: ClockRequest):
+    clock_task_id = create_clock_task(request.encrypted_data)
     return {"clock_task_id": clock_task_id}
 
 @app.post("/api/declock")
-def declock_data(request: DeclockRequest, db=Depends(get_db)):
-    encrypted_data = get_clock_task(db, request.clock_task_id)
+def declock_data(request: DeclockRequest):
+    encrypted_data = get_clock_task(request.clock_task_id)
     if encrypted_data is None:
         raise HTTPException(status_code=404, detail="Clock task ID not found")
     return {"encrypted_data": encrypted_data}

@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='mask_key',
+    name='keyguardian',
     version='0.1',
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'mask-key-setup=mask_key.cli:setup',
+            'keyguardian-setup=keyguardian.cli:setup',
         ],
     },
     install_requires=[

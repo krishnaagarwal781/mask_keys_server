@@ -1,3 +1,5 @@
+from clockify.core import get_env_variables
+import requests
 def clock(data):
     env_vars = get_env_variables()
     concatenated_data = f"{data}_{env_vars['company_key']}"[::-1]
