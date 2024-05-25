@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from app.utils import generate_key
-from app.database import get_db, create_clock_task, get_clock_task
+from app.database import get_db, create_clock_task, get_clock_task , clock_tasks_collection
 
 app = FastAPI()
 
@@ -16,9 +16,19 @@ class DeclockRequest(BaseModel):
     clock_task_id: str
 
 @app.post("/api/generate_keys")
-def generate_keys(request: KeyRequest):
+def generate_keys(request_data: KeyRequest):
     application_key = generate_key()
     company_key = generate_key()
+
+    clock_task_data = {
+        "application_use": request_data.application_use,
+        "company_name": request_data.company_name,
+        "application_key": application_key,
+        "company_key": company_key
+    }
+
+    clock_tasks_collection.insert_one(clock_task_data)
+
     return {
         "application_key": application_key,
         "company_key": company_key
