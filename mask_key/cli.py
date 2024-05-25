@@ -7,7 +7,7 @@ def setup():
     company_name = input("Enter the company name: ")
 
     # Simulate server interaction to get keys
-    response = requests.post('https://god-server.com/api/generate_keys', json={
+    response = requests.post('http://127.0.0.1:8000/api/generate_keys', json={
         'application_use': application_use,
         'company_name': company_name
     })

@@ -2,7 +2,7 @@ def clock(data):
     env_vars = get_env_variables()
     concatenated_data = f"{data}_{env_vars['company_key']}"[::-1]
 
-    response = requests.post('https://god-server.com/api/clock', json={
+    response = requests.post('http://127.0.0.1:8000/api/clock', json={
         'encrypted_data': concatenated_data
     })
 
@@ -11,7 +11,7 @@ def clock(data):
 def declock(clock_task_id):
     env_vars = get_env_variables()
 
-    response = requests.post('https://god-server.com/api/declock', json={
+    response = requests.post('http://127.0.0.1:8000/api/declock', json={
         'clock_task_id': clock_task_id
     })
 
