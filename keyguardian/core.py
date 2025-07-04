@@ -25,7 +25,7 @@ def clock(data):
 def declock(clock_task_id):
     env_vars = get_env_variables()
 
-    response = requests.post('https://god-server.com/api/declock', json={
+    response = requests.post('https://god-server.onrender.com/api/declock', json={
         'clock_task_id': clock_task_id
     })
 
